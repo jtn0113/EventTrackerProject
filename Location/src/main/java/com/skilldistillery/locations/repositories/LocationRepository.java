@@ -6,4 +6,7 @@ import com.skilldistillery.locations.entities.Location;
 
 public interface LocationRepository extends JpaRepository<Location, Integer> {
 
+	Location findById(int id);
+	void deleteById(int id);
+
 }

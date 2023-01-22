@@ -8,6 +8,6 @@ public interface LocationService {
 	List<Location> allLocations();
 	Location getLocation(int id);
 	Location create(Location location);
-	Location update(int id, Location location);
+	Location update(Location location, int id);
 	boolean deleteById(int id);
 }

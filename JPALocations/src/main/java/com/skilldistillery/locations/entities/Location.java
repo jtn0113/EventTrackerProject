@@ -18,6 +18,17 @@ public class Location {
 	@Column(name="show_title")
 	private String showTitle;
 	
+	@Column(name="name_in_show")
+	private String nameInShow;
+	
+	private String location;
+	
+	private String city;
+	
+	private String state;
+	
+	private String comments;
+	
 	public Location() {
 		super();
 	}
@@ -38,6 +49,46 @@ public class Location {
 		this.showTitle = showTitle;
 	}
 
+	public String getNameInShow() {
+		return nameInShow;
+	}
+
+	public void setNameInShow(String nameInShow) {
+		this.nameInShow = nameInShow;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -54,5 +105,13 @@ public class Location {
 		Location other = (Location) obj;
 		return id == other.id;
 	}
+
+	@Override
+	public String toString() {
+		return "Location [id=" + id + ", showTitle=" + showTitle + ", nameInShow=" + nameInShow + ", location="
+				+ location + ", city=" + city + ", state=" + state + ", comments=" + comments + "]";
+	}
+
+	
 	
 }
