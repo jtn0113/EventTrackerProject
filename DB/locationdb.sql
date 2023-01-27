@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `city` VARCHAR(45) NULL,
   `state` VARCHAR(45) NULL,
   `comments` TEXT(1000) NULL,
+  `image` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -51,12 +52,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `locations`;
-INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`) VALUES (1, 'Clerks', 'Quick Stop', '58 Leonard Ave.', 'Leonardo', 'NJ', 'The Quick Stop in Clerks is an actual convenience store where Kevin Smith worked during the time of filming. Still open today.');
-INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`) VALUES (2, 'Clerks 2', 'Mooby\'s', '8572 Stanton Ave', 'Buena Park', 'CA', 'The Mooby\'s location was a shut down Burger King. Has since been demolished.');
-INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`) VALUES (3, 'Shameless', 'Gallagher House', '2119 S Homan Ave', 'Chicago', 'IL', 'A real house in Chicago. The owners welcome fans to take pictures.');
-INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`) VALUES (4, 'Breaking Bad', 'White Family House', '3828 Piermont Drive', 'Albuquerque', 'NM', 'A real house in Albuquerque. Owners have put a fence around the house to prevent trespassers.');
-INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`) VALUES (5, 'Office Space', 'Initech', '4120 Freidrich Ln', 'Austin', 'TX', 'The office building used for Initech. Still looks the same today as in the movie.');
-INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`) VALUES (6, 'Office Space', 'Chotchkie\'s (Exterior)', '9739 Great Hills Trail', 'Austin', 'TX', 'Used for exterior shots only, interior shots were filmed at another location. Today the building is a Chase bank.');
+INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`, `image`) VALUES (1, 'Clerks', 'Quick Stop', '58 Leonard Ave.', 'Leonardo', 'NJ', 'The Quick Stop in Clerks is an actual convenience store where Kevin Smith worked during the time of filming. Still open today.', 'http://www.iknowjoshuasmith.com/wp-content/uploads/quickstop5.jpg');
+INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`, `image`) VALUES (2, 'Clerks 2', 'Mooby\'s', '8572 Stanton Ave', 'Buena Park', 'CA', 'The Mooby\'s location was a shut down Burger King. Has since been demolished.', 'https://images.static-bluray.com/reviews/992_5.jpg');
+INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`, `image`) VALUES (3, 'Shameless', 'Gallagher House', '2119 S Homan Ave', 'Chicago', 'IL', 'A real house in Chicago. The owners welcome fans to take pictures.', 'https://www.tvinsider.com/wp-content/uploads/2020/11/shameless-1101-cast-house-1014x570.jpg');
+INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`, `image`) VALUES (4, 'Breaking Bad', 'White Family House', '3828 Piermont Drive', 'Albuquerque', 'NM', 'A real house in Albuquerque. Owners have put a fence around the house to prevent trespassers.', 'https://www.fancypantshomes.com/wp-content/uploads/2020/03/original_1333066725walts.jpg');
+INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`, `image`) VALUES (5, 'Office Space', 'Initech', '4120 Freidrich Ln', 'Austin', 'TX', 'The office building used for Initech. Still looks the same today as in the movie.', 'https://1.bp.blogspot.com/-zw7IYoBsoD4/XwegvNBT1lI/AAAAAAAAlGA/s9AI4OsVC4w_4B2vd0Hosavcdv7FezAmwCLcBGAsYHQ/s1600/IMG_9768.jpeg');
+INSERT INTO `location` (`id`, `show_title`, `name_in_show`, `location`, `city`, `state`, `comments`, `image`) VALUES (6, 'Office Space', 'Chotchkie\'s (Exterior)', '9739 Great Hills Trail', 'Austin', 'TX', 'Used for exterior shots only, interior shots were filmed at another location. Today the building is a Chase bank.', 'https://i.imgflip.com/1hmh62.jpg');
 
 COMMIT;
 

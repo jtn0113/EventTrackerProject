@@ -20,8 +20,8 @@ function loadLocations() {
 				console.log(locationsList);
 				displayLocations(locationsList);
 			}
-		} else {
-			
+		}else {
+			//TODO - display an error
 		}
 	};
 	
