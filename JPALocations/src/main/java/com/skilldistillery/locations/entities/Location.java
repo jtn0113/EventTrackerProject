@@ -29,6 +29,8 @@ public class Location {
 	
 	private String comments;
 	
+	private String image;
+	
 	public Location() {
 		super();
 	}
@@ -87,6 +89,14 @@ public class Location {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

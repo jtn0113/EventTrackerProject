@@ -4,16 +4,51 @@
 <meta charset="UTF-8">
 <title>Movie Set Locations</title>
 <script type="text/javascript" src="js/script.js"></script>
+<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 
 	<h1>Locations</h1>
 	
-	<div id="locationList"></div>
+	<div id="locationList">
+	
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Show Title</th>
+		      <th>Location In Show</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    
+		  </tbody>
+		</table>
+	
+	</div>
 	
 	<div id="locationDetails"></div>
 	
-	<div id="newLocationForm"></div>
+	<div id="newLocationForm">
+		<br><br><br><br><br>
+		<h1>Add A New Location</h1>
+		<form name="addLocationForm">
+		  	<label>Show Title</label>
+		  	<input type="text" name="showTitle"><br>
+			<label>Location In Show</label>
+		  	<input type="text" name="nameInShow"><br>
+			<label>Address</label>
+		  	<input type="text" name="location"><br>
+			<label>City</label>
+		  	<input type="text" name="city"><br>
+			<label>State</label>
+		  	<input type="text" name="state"><br>
+		  	<label>Comments</label>
+		  	<input type="text" name="comments"><br>
+		  	<label>Image</label>
+		  	<input type="text" name="image"><br>
+		  	<button type="submit" name="submit">Submit</button>
+	    </form>
+	</div>
 	
 	<div id="editLocationForm"></div>
 	
