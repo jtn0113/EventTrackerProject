@@ -167,7 +167,6 @@ function showLocationDetails(location) {
 	let imageInput = document.createElement('img');
 	imageLabel.textContent = "Image";
 	imageInput.src = location.image;
-	//imageInput.setAttribute('readonly', true);
 	detailsForm.appendChild(imageLabel);
 	detailsForm.appendChild(imageInput);
 	detailsForm.appendChild(document.createElement('br'));
@@ -201,6 +200,8 @@ function editLocationDetails(location) {
 	let cityInput = form.cityInput;
 	let stateInput = form.stateInput;
 	let commentsInput = form.commentsInput;
+	let imageInput = document.createElement('input');
+	imageInput.value = location.image;
 	let confirmButton = document.createElement('button');
 	
 	titleInput.removeAttribute("readonly");
@@ -214,9 +215,16 @@ function editLocationDetails(location) {
 	
 	form.removeChild(form.lastElementChild);
 	form.removeChild(form.lastElementChild);
+	form.removeChild(form.lastElementChild);
+	form.removeChild(form.lastElementChild);
+	form.appendChild(imageInput);
+	form.appendChild(document.createElement('br'));
 	form.appendChild(confirmButton);
 
-	
+	confirmButton.addEventListener("click", function(e) {
+		e.preventDefault();
+		editLocation(location.id, titleInput.value, locationInput.value, addressInput.value, cityInput.value, stateInput.value, commentsInput.value, imageInput.value);
+	})
 	
 }
 
@@ -236,6 +244,28 @@ function deleteLocation(location) {
 	};
 	
 	xhr.send();
+}
+
+function editLocation(id, title, location, address, city, state, comments, image) {
+	let xhr = new XMLHttpRequest();
+	
+	xhr.open("PUT", "api/locations/" + id);
+	
+	xhr.setRequestHeader("Content-type", "application/json");
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 201) {
+				let data = JSON.parse(xhr.responseText);
+				loadLocations();
+				showLocationDetails(data);
+			}
+		}
+	};
+	
+	let updatedLocation = {id:id, showTitle:title, nameInShow:location, location:address, city:city, state:state, comments:comments, image:image};
+	let locationJson = JSON.stringify(updatedLocation);
+	xhr.send(locationJson);
 }
 
 
