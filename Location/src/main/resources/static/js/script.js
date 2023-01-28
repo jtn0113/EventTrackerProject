@@ -72,6 +72,7 @@ function createLocation(showTitle, nameInShow, address, city, state, comment, im
 		if(xhr.readyState === 4) {
 			if(xhr.status === 201) {
 				let data = JSON.parse(xhr.responseText);
+				showLocationDetails(data);
 				loadLocations();
 			} else {
 				console.error("POST request failed.");
@@ -80,7 +81,8 @@ function createLocation(showTitle, nameInShow, address, city, state, comment, im
 		}
 	};
 	
-	let location = {showTitle:showTitle.value, nameInShow:nameInShow.value, address:address.value, city:city.value, state:state.value, comment:comment.value, image:image.value};
+	let location = {showTitle:showTitle.value, nameInShow:nameInShow.value, location:address.value, city:city.value, state:state.value, comments:comment.value, image:image.value};
+
 	document.addLocationForm.reset();
 	
 	let locationJson = JSON.stringify(location);
@@ -98,10 +100,12 @@ function showLocationDetails(location) {
 	detailsDiv.appendChild(header);
 	
 	let detailsForm = document.createElement('form');
+	detailsForm.setAttribute("name", "locationDetailsForm");
 	detailsDiv.appendChild(detailsForm);
 	
 	let titleLabel = document.createElement('label');
 	let titleInput = document.createElement('input');
+	titleInput.setAttribute("name", "titleInput");
 	titleLabel.textContent = "Show Title";
 	titleInput.value = location.showTitle;
 	titleInput.setAttribute('readonly', true);
@@ -111,6 +115,7 @@ function showLocationDetails(location) {
 	
 	let locationLabel = document.createElement('label');
 	let locationInput = document.createElement('input');
+	locationInput.setAttribute("name", "locationInput");
 	locationLabel.textContent = "Location In Show";
 	locationInput.value = location.nameInShow;
 	locationInput.setAttribute('readonly', true);
@@ -120,6 +125,7 @@ function showLocationDetails(location) {
 	
 	let addressLabel = document.createElement('label');
 	let addressInput = document.createElement('input');
+	addressInput.setAttribute("name", "addressInput");
 	addressLabel.textContent = "Address";
 	addressInput.value = location.location;
 	addressInput.setAttribute('readonly', true);
@@ -129,6 +135,7 @@ function showLocationDetails(location) {
 	
 	let cityLabel = document.createElement('label');
 	let cityInput = document.createElement('input');
+	cityInput.setAttribute("name", "cityInput");
 	cityLabel.textContent = "City";
 	cityInput.value = location.city;
 	cityInput.setAttribute('readonly', true);
@@ -138,6 +145,7 @@ function showLocationDetails(location) {
 	
 	let stateLabel = document.createElement('label');
 	let stateInput = document.createElement('input');
+	stateInput.setAttribute("name", "stateInput");
 	stateLabel.textContent = "State";
 	stateInput.value = location.state;
 	stateInput.setAttribute('readonly', true);
@@ -147,6 +155,7 @@ function showLocationDetails(location) {
 	
 	let commentsLabel = document.createElement('label');
 	let commentsInput = document.createElement('textarea');
+	commentsInput.setAttribute("name", "commentsInput");
 	commentsLabel.textContent = "Comments";
 	commentsInput.value = location.comments;
 	commentsInput.setAttribute('readonly', true);
@@ -162,6 +171,71 @@ function showLocationDetails(location) {
 	detailsForm.appendChild(imageLabel);
 	detailsForm.appendChild(imageInput);
 	detailsForm.appendChild(document.createElement('br'));
+	
+	let editButton = document.createElement('button');
+	editButton.setAttribute("name", "edit");
+	editButton.textContent = "Edit";
+	detailsForm.appendChild(editButton);
+	
+	let deleteButton = document.createElement('button');
+	deleteButton.setAttribute("name", "delete");
+	deleteButton.textContent = "Delete";
+	detailsForm.appendChild(deleteButton);
+	
+	editButton.addEventListener("click", function(e) {
+		e.preventDefault();
+		editLocationDetails(location);
+	})
+	
+	deleteButton.addEventListener("click", function(e) {
+		e.preventDefault();
+		deleteLocation(location);
+	})
+}
+
+function editLocationDetails(location) {
+	let form = document.locationDetailsForm;
+	let titleInput = form.titleInput;
+	let locationInput = form.locationInput;
+	let addressInput = form.addressInput;
+	let cityInput = form.cityInput;
+	let stateInput = form.stateInput;
+	let commentsInput = form.commentsInput;
+	let confirmButton = document.createElement('button');
+	
+	titleInput.removeAttribute("readonly");
+	locationInput.removeAttribute("readonly");
+	addressInput.removeAttribute("readonly");
+	cityInput.removeAttribute("readonly");
+	stateInput.removeAttribute("readonly");
+	commentsInput.removeAttribute("readonly");
+	
+	confirmButton.textContent = "Confirm";
+	
+	form.removeChild(form.lastElementChild);
+	form.removeChild(form.lastElementChild);
+	form.appendChild(confirmButton);
+
+	
+	
+}
+
+function deleteLocation(location) {
+	let xhr = new XMLHttpRequest();
+	
+	xhr.open("DELETE", "api/locations/" + location.id);
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 204) {
+				let detailsDiv = document.getElementById("locationDetails");
+				detailsDiv.textContent = "";
+				loadLocations();
+			}
+		}
+	};
+	
+	xhr.send();
 }
 
 
