@@ -24,3 +24,9 @@ Next to the edit button is the delete button. This will delete the selected loca
 
 On the bottom of the page is a form labeled "Add A New Location".
 Fill out this form and click 'Submit', and the page will be refreshed with the new location listed.
+
+## Technologies Used
+Java, JavaScript, SQL, Spring Boot, REST, JPA, AJAX, JSON, HTML, CSS, Git
+
+## Lessons Learned
+For this project I learned how to design a REST API using JSON to parse Http requests, and how to traverse and manipulate the DOM using JavaScript.
