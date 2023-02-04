@@ -39,6 +39,7 @@ public class LocationServiceImpl implements LocationService {
 			managed.setCity(location.getCity());
 			managed.setState(location.getState());
 			managed.setComments(location.getComments());
+			managed.setImage(location.getImage());
 		}
 		return locationRepo.saveAndFlush(managed);
 	}

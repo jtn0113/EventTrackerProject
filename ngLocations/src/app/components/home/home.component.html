@@ -1,5 +1,100 @@
-<h1>Locations from Movies!</h1>
+<div *ngIf="!selected && !addLocationSelected">
+  <h1>All Movie Locations</h1>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Show Name</th>
+        <th>Location In Show</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of locations" (click)="displayLocation(location)">
+        <td>{{location.showTitle}}</td>
+        <td>{{location.nameInShow}}</td>
+        <!-- <td><button type="button" class="btn btn-danger" (click)="deleteTodo(todo.id)">X</button></td> -->
+      </tr>
+    </tbody>
+  </table>
+  <!-- <p>Show completed: <input type="checkbox" name="showCompleted" [(ngModel)]="showComplete"></p><br>
+  <input type="text" name="task" [(ngModel)]="newTodo.task" >
+  <input type="submit" (click)="addTodo(newTodo)"> -->
+  <button class="btn btn-primary" type="button" (click)="changeAddLocationSelected()">Add New Location</button>
+</div>
 
-<ul>
-  <li *ngFor="let location of locations">{{location.showTitle}}</li>
-</ul>
+<div *ngIf="selected && !editLocation">
+  <h1>Location Details</h1>
+  <button class="btn btn-primary" type="button" (click)="displayTable()">Show All Locations</button>
+  <div class="card" style="width: 75%;">
+    <img src="{{selected.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{selected.showTitle}}</h5>
+      <h5 class="card-title">{{selected.nameInShow}}</h5>
+      <p class="card-text">{{selected.comments}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{selected.location}}</li>
+      <li class="list-group-item">{{selected.city}}, {{selected.state}}</li>
+    </ul>
+    <div class="card-body">
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" (click)="setEditLocation()">Edit</button>
+        <button class="btn btn-primary" type="button" (click)="deleteLocation(selected.id)">Delete</button>
+      </div>
+      <!-- <button class="button" (click)="setEditLocation()">Edit</button>
+      <button class="button" (click)="displayTable()">All Locations</button> -->
+    </div>
+  </div>
+</div>
+
+<div *ngIf="editLocation">
+  <h1>Edit Location</h1>
+  <form>
+    <label class="form-label">Show Title</label>
+    <input class="form-control" type="text" name="showTitle" [(ngModel)]="editLocation.showTitle" ><br>
+    <label class="form-label">Name In Show</label>
+    <input class="form-control" type="text" name="nameInShow" [(ngModel)]="editLocation.nameInShow" ><br>
+    <label class="form-label">Address</label>
+    <input class="form-control" type="text" name="location" [(ngModel)]="editLocation.location" ><br>
+    <label class="form-label">City</label>
+    <input class="form-control" type="text" name="city" [(ngModel)]="editLocation.city" ><br>
+    <label class="form-label">State</label>
+    <input class="form-control" type="text" name="state" [(ngModel)]="editLocation.state" ><br>
+    <label class="form-label">Comments</label>
+    <input class="form-control" type="text" name="comments" [(ngModel)]="editLocation.comments" ><br>
+    <label class="form-label">Image URL</label>
+    <input class="form-control" type="text" name="image" [(ngModel)]="editLocation.image" ><br>
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-primary" (click)="updateLocation(editLocation)">Save</button>
+      <button type="button" class="btn btn-primary" (click)="editLocation = null">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<!-- <input type="text" name="task" [(ngModel)]="newTodo.task" >
+  <input type="submit" (click)="addTodo(newTodo)"> -->
+
+<div *ngIf="addLocationSelected">
+  <h1>Add New Location</h1>
+  <form>
+    <label class="form-label">Show Title</label>
+    <input class="form-control" type="text" name="showTitle" [(ngModel)]="newLocation.showTitle" ><br>
+    <label class="form-label">Name In Show</label>
+    <input class="form-control" type="text" name="nameInShow" [(ngModel)]="newLocation.nameInShow" ><br>
+    <label class="form-label">Address</label>
+    <input class="form-control" type="text" name="location" [(ngModel)]="newLocation.location" ><br>
+    <label class="form-label">City</label>
+    <input class="form-control" type="text" name="city" [(ngModel)]="newLocation.city" ><br>
+    <label class="form-label">State</label>
+    <input class="form-control" type="text" name="state" [(ngModel)]="newLocation.state" ><br>
+    <label class="form-label">Comments</label>
+    <input class="form-control" type="text" name="comments" [(ngModel)]="newLocation.comments" ><br>
+    <label class="form-label">Image URL</label>
+    <input class="form-control" type="text" name="image" [(ngModel)]="newLocation.image" ><br>
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-primary" (click)="addLocation(newLocation)">Save</button>
+      <button type="button" class="btn btn-primary" (click)="changeAddLocationSelected()">Cancel</button>
+    </div>
+  </form>
+
+</div>

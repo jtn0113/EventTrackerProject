@@ -20,7 +20,41 @@ export class LocationService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('LocationService.index(): error retrieving todo list: ' + err)
+          () => new Error('LocationService.index(): error retrieving location list: ' + err)
+        );
+      })
+    );
+  }
+
+  destroy(id: number):Observable<void>  {
+    return this.http.delete<void>(`${this.url}/${id}`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('LocationService.delete(): error deleting location: ' + err)
+        );
+      })
+    );
+  }
+
+  create(location: Location):Observable<Location> {
+    location.comments = '';
+    return this.http.post<Location>(this.url, location).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('LocationService.create(): error creating location: ' + err)
+        );
+      })
+    );
+  }
+
+  update(location: Location):Observable<Location> {
+    return this.http.put<Location>(`${this.url}/${location.id}`, location).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('LocationService.update(): error updating location: ' + err)
         );
       })
     );
