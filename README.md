@@ -17,16 +17,15 @@ This application is a tracker of the real life locations from your favorite movi
 On the home page you will see a list of all the locations in the database.
 
 To see the details of that location, click that locations row on the table.
-When you click the row, a new form will appear, labled 'Location Details'. This shows all the details of the location.
-The input fields are read-only, but if you click the edit button you will be allowed to edit the details. When you're finished editing the location details, click confirm. The page will refresh with the new details of the location.
+When you click the row, a new page will appear, labeled 'Location Details'. This shows all the details of the location.
+From here you can click "Show All Locations" at the top of the page, or click "Edit" or "Delete" at the bottom of the page.
+"Show All Locations" will take you back to the home page, showing all locations. "Delete" will remove that location from the database and return you to the home page. "Edit" will take you to a form that is pre-filled with that locations current details. Change the details in the form, and when you're finished click "Save". This will save the details and return you to the details page for that location.
 
-Next to the edit button is the delete button. This will delete the selected location from the database.
-
-On the bottom of the page is a form labeled "Add A New Location".
-Fill out this form and click 'Submit', and the page will be refreshed with the new location listed.
+On the bottom of the page is a form labeled "Add New Location".
+Fill out this form and click "Save", and the page will be refreshed with the new location listed.
 
 ## Technologies Used
-Java, JavaScript, SQL, Spring Boot, REST, JPA, AJAX, JSON, HTML, CSS, Git
+Java, SQL, Javascript, Typescript, Angular, Spring Data JPA, Spring Boot, DOM, REST, JSON, AJAX, Bootstrap, HTML/CSS
 
 ## Lessons Learned
-For this project I learned how to design a REST API using JSON to parse Http requests, and how to traverse and manipulate the DOM using JavaScript.
+For this project I learned how to design a REST API using JSON to parse Http requests, utilize Angular to build the front end, and how to traverse and manipulate the DOM using JavaScript.
